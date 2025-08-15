@@ -53,7 +53,7 @@ export default function Ferrari250GTOPage() {
     <div className="bg-black text-white min-h-screen px-8 pt-24 pb-8">
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full bg-black text-white z-50 flex justify-between items-center px-8 py-4 shadow-md transition-opacity duration-500">
-        <div className="text-xl font-bold">VIAGGIO VELOCE</div>
+        <div className="text-xl font-bold">VIAGGIO VELOGGE</div>
         <ul className="flex gap-6">
           <li>Home</li>
           <li>Fotos</li>
