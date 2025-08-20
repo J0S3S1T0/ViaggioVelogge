@@ -68,7 +68,7 @@ export default function SkylineR34() {
       {/* Back Button */}
       <div className="container mx-auto px-4 md:px-8 pt-6">
         <Link 
-          href="/galeria" 
+          href="/galeriaAutos" 
           className="inline-flex items-center text-gray-400 hover:text-white transition"
         >
           ← Volver a la galería
@@ -82,7 +82,7 @@ export default function SkylineR34() {
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4">
               <Image
-                src="/skyline-detail-1.jpg"
+                src="/carNissanSkilineGTR34.jpg"
                 alt="Skyline GT-R R34 Front"
                 width={1200}
                 height={800}
@@ -93,7 +93,7 @@ export default function SkylineR34() {
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-2">
                 <Image
-                  src="/skyline-detail-2.jpg"
+                  src="/carNissanSkilineGTR34Interior.jpg"
                   alt="Skyline Engine"
                   width={600}
                   height={400}
@@ -102,7 +102,7 @@ export default function SkylineR34() {
               </div>
               <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-2">
                 <Image
-                  src="/skyline-detail-3.jpg"
+                  src="/carNissanSkilineGTR34Motor.jpg"
                   alt="Skyline Interior"
                   width={600}
                   height={400}
