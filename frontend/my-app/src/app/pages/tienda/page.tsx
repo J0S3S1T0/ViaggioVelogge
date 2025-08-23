@@ -58,7 +58,7 @@ export default function TiendaAccesorios() {
       precio: 85500,
       precioFormateado: "$85.500",
       imagen: "/rin.png",
-      link: "/2"
+      link: "/pages/tienda/2"
     },
     {
       id: 3,
@@ -173,9 +173,9 @@ export default function TiendaAccesorios() {
         <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-lg transition-all duration-500">
           <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</div>
           <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
-            <li className="hover:text-gray-300 transition"><a href="#inicio">INICIO</a></li>
-            <li className="hover:text-gray-300 transition"><a href="#tienda">TIENDA</a></li>
-            <li className="hover:text-gray-300 transition"><a href="#galeria">GALERÍA</a></li>
+            <li className="hover:text-gray-300 transition"><a href="/">INICIO</a></li>
+            <li className="hover:text-gray-300 transition"><a href="/pages/tienda">TIENDA</a></li>
+            <li className="hover:text-gray-300 transition"><a href="/pages/galeriaAutos">GALERÍA</a></li>
             <li className="hover:text-gray-300 transition"><a href="#contacto">CONTACTO</a></li>
           </ul>
           <button 

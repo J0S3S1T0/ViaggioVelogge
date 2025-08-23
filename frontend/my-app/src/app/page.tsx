@@ -28,7 +28,7 @@ export default function Home() {
   // Datos para el carrusel 3D
   const carouselItems = [
     {
-      src: "/impala.png",
+      src: "/catalogo3D/chevrolet/Impala/impala.png",
       alt: "Chevrolet Impala 1959",
       title: "Chevrolet Impala 1959",
       subtitle: "Clásico Americano en 3D",
@@ -39,7 +39,7 @@ export default function Home() {
       alt: "Ferrari Testarossa",
       title: "Ferrari Testarossa",
       subtitle: "Leyenda Italiana en 3D", 
-      link: "/ferrari250",
+      link: "/pages/catalogo/ferrari250",
     }
   ];
 
@@ -98,9 +98,10 @@ export default function Home() {
           <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</div>
           <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
             <li className="hover:text-gray-300 transition"><a href="#inicio">INICIO</a></li>
-            <li className="hover:text-gray-300 transition"><a href="#3d-gallery">3D GALLERY</a></li>
-            <li className="hover:text-gray-300 transition"><a href="#classic-cars">CLASSIC CARS</a></li>
-            <li className="hover:text-gray-300 transition"><a href="galeriaAutos">TUNED CARS</a></li>
+            <li className="hover:text-gray-300 transition"><a href="/pages/catalogo3D">3D GALLERY</a></li>
+            <li className="hover:text-gray-300 transition"><a href="/pages/catalogo">CLASSIC CARS</a></li>
+            <li className="hover:text-gray-300 transition"><a href="/pages/galeriaAutos">TUNED CARS</a></li>
+            <li className="hover:text-gray-300 transition"><a href="/pages/tienda">Tienda</a></li>
           </ul>
         </nav>
       )}
@@ -111,7 +112,7 @@ export default function Home() {
           {/* Encabezado */}
           <div className="flex justify-between items-center mb-10">
             <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wider">3D GALLERY</h2>
-            <a href="/catalogo3D" className="flex items-center text-lg hover:text-blue-400 transition">
+            <a href="/pages/catalogo3D" className="flex items-center text-lg hover:text-blue-400 transition">
               VER TODOS <ArrowRight />
             </a>
           </div>
@@ -207,7 +208,7 @@ export default function Home() {
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-wider uppercase">Colección Clásica</h2>
             <a
-              href="/catalogo"
+              href="/pages/catalogo"
               className="flex items-center text-md md:text-lg uppercase tracking-wider hover:text-blue-400 transition"
             >
               VER TODOS <ArrowRight className="ml-1" />
@@ -228,7 +229,7 @@ export default function Home() {
                 alt: "Ferrari 250 GTO",
                 title: "Ferrari 250 GTO",
                 subtitle: "Pura Sangre Italiana",
-                link: "/ferrari250",
+                link: "/pages/catalogo/ferrari250",
               }
             ].map((car, index) => (
               <div key={index} className="group relative h-[370px] md:h-[500px] w-full overflow-hidden rounded-2xl border border-gray-700 hover:border-gray-400 transition-all duration-500 hover:shadow-2xl">

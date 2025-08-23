@@ -81,7 +81,7 @@ export default function CatalogoPage() {
       description: "Una de las piezas más codiciadas del mundo automotriz, con solo 36 unidades fabricadas. Considerada la obra maestra de Enzo Ferrari.",
       image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
       views: "Detalles",
-      link: "/ferrari250",
+      link: "/pages/catalogo/ferrari250",
       category: "leyenda"
     },
     {

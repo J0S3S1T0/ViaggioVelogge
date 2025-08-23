@@ -37,14 +37,14 @@ export default function GaleriaPinterest() {
   
   // Datos de los autos - usando imágenes de placeholder para evitar errores
   const cars = [
-    { src: "carGrey.jpg", alt: "NSX Pink", title: "Acura NSX", subtitle: "Tuned Edition", link: "/nsx-pink", width: 400, height: 600 },
-    { src: "carMazdaRX-7.jpg", alt: "NSX Purple", title: "Acura NSX", subtitle: "Purple Beast", link: "/nsx-purple", width: 400, height: 500 },
-    { src: "carCivic.jpg", alt: "Nissan Silvia", title: "Nissan Silvia", subtitle: "Drift Machine", link: "/silvia", width: 400, height: 700 },
-    { src: "carCorvetteC5.jpg", alt: "Toyota Supra", title: "Toyota Supra", subtitle: "MK4 Legend", link: "/supra", width: 400, height: 550 },
-    { src: "carNissanSkilineGtR34.jpg", alt: "Honda Civic", title: "Honda Civic", subtitle: "Street Racer", link: "/GTR34", width: 400, height: 650 },
-    { src: "carNSX.jpg", alt: "Corvette C5", title: "Corvette C5", subtitle: "American Muscle", link: "/corvette", width: 400, height: 500 },
-    { src: "carNSXPink.jpg", alt: "Mazda RX-7", title: "Mazda RX-7", subtitle: "Rotary Power", link: "/rx7", width: 400, height: 750 },
-    { src: "carSilvia.jpg", alt: "Skyline GTR R34", title: "Skyline GTR R34", subtitle: "Godzilla", link: "/GTR34", width: 400, height: 600 },
+    { src: "/galeria/toyotaMK4/carGrey.jpg", alt: "NSX Pink", title: "Acura NSX", subtitle: "Tuned Edition", link: "/nsx-pink", width: 400, height: 600 },
+    { src: "/galeria/mazdaRX-7/carMazdaRX-7.jpg", alt: "NSX Purple", title: "Acura NSX", subtitle: "Purple Beast", link: "/nsx-purple", width: 400, height: 500 },
+    { src: "/galeria/civic/carCivic.jpg", alt: "Nissan Silvia", title: "Nissan Silvia", subtitle: "Drift Machine", link: "/silvia", width: 400, height: 700 },
+    { src: "/galeria/corvetteC5/carCorvetteC5.jpg", alt: "Toyota Supra", title: "Toyota Supra", subtitle: "MK4 Legend", link: "/supra", width: 400, height: 550 },
+    { src: "/galeria/NissanSkilineGTR34/carNissanSkilineGtR34.jpg", alt: "Honda Civic", title: "Honda Civic", subtitle: "Street Racer", link: "/GTR34", width: 400, height: 650 },
+    { src: "/galeria/NSX/carNSX.jpg", alt: "Corvette C5", title: "Corvette C5", subtitle: "American Muscle", link: "/corvette", width: 400, height: 500 },
+    { src: "/galeria/NSX/carNSXPink.jpg", alt: "Mazda RX-7", title: "Mazda RX-7", subtitle: "Rotary Power", link: "/rx7", width: 400, height: 750 },
+    { src: "/galeria/silvia/carSilvia.jpg", alt: "Skyline GTR R34", title: "Skyline GTR R34", subtitle: "Godzilla", link: "/GTR34", width: 400, height: 600 },
     { src: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=400&h=550&fit=crop", alt: "NSX Pink 2", title: "Acura NSX", subtitle: "Tuned Edition", link: "/nsx-pink", width: 400, height: 550 },
     { src: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=400&h=700&fit=crop", alt: "NSX Purple 2", title: "Acura NSX", subtitle: "Purple Beast", link: "/nsx-purple", width: 400, height: 700 },
     { src: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=400&h=500&fit=crop", alt: "Nissan Silvia 2", title: "Nissan Silvia", subtitle: "Drift Machine", link: "/silvia", width: 400, height: 500 },
