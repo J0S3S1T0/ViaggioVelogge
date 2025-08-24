@@ -12,7 +12,7 @@ export default function GaleriaPage() {
       nombre: "Chevrolet Impala",
       año: "1959",
       descripcion: "Calle 30 Avance 2020",
-      imagen: "/Impala.png",
+      imagen: "/catalogo3D/chevrolet/Impala/impala.png",
       detallesLink: "/impala",
       vista3D: true,
       categoria: "Clásico Americano"
@@ -32,7 +32,7 @@ export default function GaleriaPage() {
       nombre: "Buick LeSabre",
       año: "1959",
       descripcion: "Kate Hano",
-      imagen: "/BuickLeSabre1959.png",
+      imagen: "/catalogo/Chevrolet/BuickLeSabre1959/BuickLeSabre1959.png",
       detallesLink: "/buick-lesabre",
       vista3D: true,
       categoria: "Clásico Americano"
@@ -41,7 +41,7 @@ export default function GaleriaPage() {
       id: 4,
       nombre: "Ferrari 250 GTO",
       descripcion: "Elegancia Clásica",
-      imagen: "/Ferrari250.png",
+      imagen: "/catalogo/Ferrari/ferrari250GTO/Ferrari250.png",
       detallesLink: "/ferrari-250",
       vista3D: false,
       categoria: "Leyenda Italiana"
@@ -76,7 +76,7 @@ export default function GaleriaPage() {
       <header className="relative h-96 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/InicioCar.jpg"
+            src="/otros/InicioCar.jpg"
             alt="Galería de autos"
             fill
             className="object-cover opacity-50"

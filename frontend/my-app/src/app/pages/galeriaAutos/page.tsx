@@ -111,7 +111,7 @@ export default function GaleriaPinterest() {
         {/* Hero Section */}
         <div className="relative w-screen h-screen">
           <img
-            src="https://images.unsplash.com/photo-1537005081207-04f90e3ba640?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+            src="/otros/inicioGaleria.png"
             alt="Inicio Car"
             className="object-cover opacity-90 w-full h-full"
           />

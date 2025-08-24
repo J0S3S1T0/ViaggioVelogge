@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { CartItem, formatPrice, getCartFromStorage, saveCartToStorage } from '@/lib/utils';
 
 const ArrowRight = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="inline ml-1">
@@ -17,24 +18,33 @@ const CartIcon = () => (
   </svg>
 );
 
+const SearchIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+);
+
 export default function TiendaAccesorios() {
-  const [showNav, setShowNav] = useState(false);
   const [filters, setFilters] = useState({
     año: '',
     marca: '',
     modelo: '',
-    categoria: ''
+    categoria: '',
+    busqueda: ''
   });
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [showCart, setShowCart] = useState(false);
 
+  // Cargar carrito desde localStorage al iniciar
   useEffect(() => {
-    const handleScroll = () => {
-      setShowNav(window.scrollY > 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    setCartItems(getCartFromStorage());
   }, []);
+
+  // Guardar carrito en localStorage cuando cambie
+  useEffect(() => {
+    saveCartToStorage(cartItems);
+  }, [cartItems]);
 
   const accesorios = [
     {
@@ -46,18 +56,19 @@ export default function TiendaAccesorios() {
       categoria: "Escape",
       precio: 149990,
       precioFormateado: "$149.990",
-      imagen: "/TuboEscape.jpg"
+      imagen: "/tienda/tubosEscapes/TuboEscape.png",
+      link: "/pages/tienda/1"
     },
     {
       id: 2,
-      nombre: "Rin 17 de acero negro",
+      nombre: "Rin de Aleación Deportivo",
       año: "2018-2023",
       marca: "AlloyTech",
       modelo: "Deportivos",
       categoria: "Rines",
       precio: 85500,
       precioFormateado: "$85.500",
-      imagen: "/rin.png",
+      imagen: "/tienda/rins/rin.png",
       link: "/pages/tienda/2"
     },
     {
@@ -66,21 +77,21 @@ export default function TiendaAccesorios() {
       año: "2010-2023",
       marca: "SpeedFlow",
       modelo: "Varios",
-      categoria: "Escape",
+      categoria: "Suspensión",
       precio: 499990,
       precioFormateado: "$499.990",
-      imagen: "/Suspension.jpg"
+      imagen: "/tienda/suspension/Suspension.png"
     },
     {
       id: 4,
-      nombre: "Turbo univertsal, marca Harrett",
+      nombre: "Turbo universal, marca Harrett",
       año: "2015-2023",
       marca: "Harrett",
       modelo: "Coupe/Sedán",
-      categoria: "Aerodinámica",
+      categoria: "Motor",
       precio: 299990,
       precioFormateado: "$299.990",
-      imagen: "/Turbo.jpg"
+      imagen: "/tienda/turbo/Turbo.png"
     },
     {
       id: 5,
@@ -91,7 +102,7 @@ export default function TiendaAccesorios() {
       categoria: "Iluminación",
       precio: 89990,
       precioFormateado: "$89.990",
-      imagen: "/LuzTrasera.png"
+      imagen: "/tienda/luces/LuzTrasera.png"
     },
     {
       id: 6,
@@ -99,12 +110,18 @@ export default function TiendaAccesorios() {
       año: "2015-2023",
       marca: "DriveStyle",
       modelo: "Universal",
-      categoria: "Interior",
+      categoria: "Iluminación",
       precio: 249990,
       precioFormateado: "$249.990",
-      imagen: "/LuzTrasera2.jpg"
+      imagen: "/tienda/luces/LuzTrasera2.png"
     }
   ];
+
+  // Obtener opciones únicas para los filtros
+  const opcionesAño = [...new Set(accesorios.flatMap(item => item.año.split('-').map(a => a.trim())))].sort((a, b) => b - a);
+  const opcionesMarca = [...new Set(accesorios.map(item => item.marca))].sort();
+  const opcionesModelo = [...new Set(accesorios.map(item => item.modelo))].sort();
+  const opcionesCategoria = [...new Set(accesorios.map(item => item.categoria))].sort();
 
   const [filteredAccesorios, setFilteredAccesorios] = useState(accesorios);
 
@@ -115,19 +132,30 @@ export default function TiendaAccesorios() {
 
   const applyFilters = () => {
     const filtered = accesorios.filter(item => {
-      return (
-        (filters.año === '' || item.año.includes(filters.año)) &&
-        (filters.marca === '' || item.marca.toLowerCase().includes(filters.marca.toLowerCase())) &&
-        (filters.modelo === '' || item.modelo.toLowerCase().includes(filters.modelo.toLowerCase())) &&
-        (filters.categoria === '' || item.categoria.toLowerCase().includes(filters.categoria.toLowerCase()))
-      );
+      const matchesAño = filters.año === '' || item.año.includes(filters.año);
+      const matchesMarca = filters.marca === '' || item.marca.toLowerCase().includes(filters.marca.toLowerCase());
+      const matchesModelo = filters.modelo === '' || item.modelo.toLowerCase().includes(filters.modelo.toLowerCase());
+      const matchesCategoria = filters.categoria === '' || item.categoria.toLowerCase().includes(filters.categoria.toLowerCase());
+      
+      // Búsqueda libre en nombre, marca, modelo y categoría
+      const matchesBusqueda = filters.busqueda === '' || 
+        item.nombre.toLowerCase().includes(filters.busqueda.toLowerCase()) ||
+        item.marca.toLowerCase().includes(filters.busqueda.toLowerCase()) ||
+        item.modelo.toLowerCase().includes(filters.busqueda.toLowerCase()) ||
+        item.categoria.toLowerCase().includes(filters.busqueda.toLowerCase());
+      
+      return matchesAño && matchesMarca && matchesModelo && matchesCategoria && matchesBusqueda;
     });
     setFilteredAccesorios(filtered);
   };
 
+  // Aplicar filtros automáticamente cuando cambian
+  useEffect(() => {
+    applyFilters();
+  }, [filters]);
+
   const clearFilters = () => {
-    setFilters({ año: '', marca: '', modelo: '', categoria: '' });
-    setFilteredAccesorios(accesorios);
+    setFilters({ año: '', marca: '', modelo: '', categoria: '', busqueda: '' });
   };
 
   const addToCart = (product) => {
@@ -138,7 +166,14 @@ export default function TiendaAccesorios() {
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         );
       }
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [...prevItems, { 
+        id: product.id,
+        nombre: product.nombre,
+        precio: product.precio,
+        quantity: 1,
+        imagen: product.imagen,
+        precioFormateado: product.precioFormateado
+      }];
     });
   };
 
@@ -155,42 +190,37 @@ export default function TiendaAccesorios() {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
   };
 
+  // Función para eliminar todo el carrito
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce((sum, item) => sum + (item.precio * item.quantity), 0);
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0
-    }).format(price).replace('COP', '$').trim();
-  };
-
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* Navbar */}
-      {showNav && (
-        <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-lg transition-all duration-500">
-          <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</div>
-          <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
-            <li className="hover:text-gray-300 transition"><a href="/">INICIO</a></li>
-            <li className="hover:text-gray-300 transition"><a href="/pages/tienda">TIENDA</a></li>
-            <li className="hover:text-gray-300 transition"><a href="/pages/galeriaAutos">GALERÍA</a></li>
-            <li className="hover:text-gray-300 transition"><a href="#contacto">CONTACTO</a></li>
-          </ul>
-          <button 
-            onClick={() => setShowCart(!showCart)} 
-            className="relative p-2 hover:bg-gray-700 rounded-full"
-          >
-            <CartIcon />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {totalItems}
-              </span>
-            )}
-          </button>
-        </nav>
-      )}
+      {/* Navbar fijo siempre visible */}
+      <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-lg">
+        <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</div>
+        <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
+          <li className="hover:text-gray-300 transition"><a href="/">INICIO</a></li>
+          <li className="hover:text-gray-300 transition"><a href="/pages/tienda">TIENDA</a></li>
+          <li className="hover:text-gray-300 transition"><a href="/pages/galeriaAutos">GALERÍA</a></li>
+          <li className="hover:text-gray-300 transition"><a href="#contacto">CONTACTO</a></li>
+        </ul>
+        <button 
+          onClick={() => setShowCart(true)} 
+          className="relative p-2 hover:bg-gray-700 rounded-full"
+        >
+          <CartIcon />
+          {totalItems > 0 && (
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              {totalItems}
+            </span>
+          )}
+        </button>
+      </nav>
 
       {/* Carrito lateral */}
       {showCart && (
@@ -200,11 +230,24 @@ export default function TiendaAccesorios() {
             <div className="flex flex-col h-full">
               <div className="flex justify-between items-center p-4 border-b border-gray-700">
                 <h2 className="text-xl font-bold">Tu Carrito</h2>
-                <button onClick={() => setShowCart(false)} className="text-gray-400 hover:text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                <div className="flex items-center gap-2">
+                  {cartItems.length > 0 && (
+                    <button 
+                      onClick={clearCart}
+                      className="text-red-400 hover:text-red-300 text-sm mr-2"
+                      title="Eliminar todo"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    </button>
+                  )}
+                  <button onClick={() => setShowCart(false)} className="text-gray-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <div className="flex-1 overflow-y-auto p-4">
@@ -274,56 +317,86 @@ export default function TiendaAccesorios() {
       )}
 
       {/* Sección Tienda */}
-      <section id="tienda" className="pt-24 pb-16 px-4 md:px-8">
+      <section id="tienda" className="pt-32 pb-16 px-4 md:px-8">
         <div className="container mx-auto max-w-6xl">
           <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">Tienda de Accesorios</h1>
           
           {/* Filtros de búsqueda */}
           <div className="bg-gray-800 p-6 rounded-lg mb-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">Año</label>
+            {/* Búsqueda libre */}
+            <div className="mb-6 relative">
+              <label className="block text-sm font-medium mb-2">Búsqueda</label>
+              <div className="relative">
                 <input
                   type="text"
+                  name="busqueda"
+                  value={filters.busqueda}
+                  onChange={handleFilterChange}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white pl-10"
+                  placeholder="Buscar por nombre, marca, modelo..."
+                />
+                <div className="absolute left-3 top-2.5 text-gray-400">
+                  <SearchIcon />
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Año</label>
+                <select
                   name="año"
                   value={filters.año}
                   onChange={handleFilterChange}
                   className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white"
-                  placeholder="Ej: 2020"
-                />
+                >
+                  <option value="">Todos los años</option>
+                  {opcionesAño.map(año => (
+                    <option key={año} value={año}>{año}</option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Marca</label>
-                <input
-                  type="text"
+                <select
                   name="marca"
                   value={filters.marca}
                   onChange={handleFilterChange}
                   className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white"
-                  placeholder="Ej: Universal"
-                />
+                >
+                  <option value="">Todas las marcas</option>
+                  {opcionesMarca.map(marca => (
+                    <option key={marca} value={marca}>{marca}</option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Modelo</label>
-                <input
-                  type="text"
+                <select
                   name="modelo"
                   value={filters.modelo}
                   onChange={handleFilterChange}
                   className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white"
-                  placeholder="Ej: Sedán"
-                />
+                >
+                  <option value="">Todos los modelos</option>
+                  {opcionesModelo.map(modelo => (
+                    <option key={modelo} value={modelo}>{modelo}</option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Categoría</label>
-                <input
-                  type="text"
+                <select
                   name="categoria"
                   value={filters.categoria}
                   onChange={handleFilterChange}
                   className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white"
-                  placeholder="Ej: Escape"
-                />
+                >
+                  <option value="">Todas las categorías</option>
+                  {opcionesCategoria.map(categoria => (
+                    <option key={categoria} value={categoria}>{categoria}</option>
+                  ))}
+                </select>
               </div>
             </div>
             
@@ -334,18 +407,9 @@ export default function TiendaAccesorios() {
               >
                 Limpiar Filtros
               </button>
-              <button
-                onClick={applyFilters}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md transition"
-              >
-                Aplicar Filtros
-              </button>
-              <button
-                onClick={applyFilters}
-                className="px-4 py-2 bg-gray-700 border border-blue-500 hover:bg-gray-600 text-white rounded-md transition"
-              >
-                Buscar
-              </button>
+              <div className="text-sm text-gray-400 self-center">
+                {filteredAccesorios.length} {filteredAccesorios.length === 1 ? 'producto encontrado' : 'productos encontrados'}
+              </div>
             </div>
           </div>
 
@@ -353,7 +417,7 @@ export default function TiendaAccesorios() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredAccesorios.map(accesorio => (
               <div key={accesorio.id} className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300">
-                <Link href={`/tienda/${accesorio.id}`} className="block">
+                <Link href={accesorio.link || `/tienda/${accesorio.id}`} className="block">
                   <div className="h-48 bg-gray-700 relative">
                     <Image
                       src={accesorio.imagen}

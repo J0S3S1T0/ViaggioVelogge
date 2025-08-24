@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { CartItem, formatPrice, getCartFromStorage, saveCartToStorage } from '@/lib/utils';
+import { CartItem, formatPrice, getCartFromStorage, saveCartToStorage, setupCartSync } from '@/lib/utils';
 
 const ProductPage = () => {
   const router = useRouter();
@@ -12,31 +12,40 @@ const ProductPage = () => {
   const [activeTab, setActiveTab] = useState<string>('descripcion');
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
-  // Cargar carrito desde localStorage al iniciar
+  // Sincronizar carrito entre pestañas/páginas
   useEffect(() => {
+    // Cargar carrito inicial
     setCartItems(getCartFromStorage());
+    
+    // Configurar sincronización
+    const cleanup = setupCartSync((newCart) => {
+      setCartItems(newCart);
+    });
+    
+    return cleanup;
   }, []);
 
-  // Guardar carrito en localStorage cuando cambie
+  // Guardar carrito cuando cambie
   useEffect(() => {
     saveCartToStorage(cartItems);
   }, [cartItems]);
 
   // Array de imágenes del producto desde diferentes perspectivas
   const productImages = [
-    "/tienda/rins/rin.png",
-    "/tienda/rins/rin2.png",
-    "/tienda/rins/rin3.png"
+    "/tienda/tubosEscapes/TuboEscape.png",
+    "/tienda/tubosEscapes/TuboEscape2.png",
+    "/tienda/tubosEscapes/TuboEscape3.png",
+    "/tienda/tubosEscapes/TuboEscape4.png"
   ];
 
   const product: CartItem = {
-    id: 2,
-    nombre: "Rin de Aleación Deportivo",
-    descripcion: "Rines de aleación 17\" Torneos X99121B en color negro mate con diseño de radios deportivos.",
-    precio: 85500,
-    precioFormateado: "$85.500",
+    id: 1,
+    nombre: "Punta de escape tipo Burnt titanium look",
+    descripcion: "Punta de escape deportiva con acabado burnt titanium para un look agresivo y sonido deportivo.",
+    precio: 149990,
+    precioFormateado: "$149.990",
     imagen: productImages[0],
-    detalles: "19\" de diámetro (19\" x 8,5\") - Offset: ET35 - Perforación: 5x114.3",
+    detalles: "Diámetro: 102mm - Material: Acero inoxidable 409 - Acabado: Burnt Titanium",
     quantity: 1
   };
 
@@ -244,7 +253,7 @@ const ProductPage = () => {
           <span className="mx-2">/</span>
           <button onClick={() => router.push('/pages/tienda')} className="hover:text-white transition-colors">Tienda</button>
           <span className="mx-2">/</span>
-          <span className="text-white">Rines</span>
+          <span className="text-white">Escape</span>
           <span className="mx-2">/</span>
           <span className="text-blue-400">{product.nombre}</span>
         </div>
@@ -419,36 +428,34 @@ const ProductPage = () => {
           <div className="p-6">
             {activeTab === 'descripcion' && (
               <div>
-                <p className="mb-4">Estos rines deportivos de aleación negra transformarán por completo la apariencia de tu vehículo, dándole un look más agresivo y deportivo.</p>
-                <p className="mb-4">Fabricados en aleación de aluminio de alta resistencia, ofrecen una excelente disipación del calor de los frenos y reducen el peso no suspendido, mejorando el rendimiento y la eficiencia de combustible.</p>
-                <p>El diseño de radios múltiples no solo es visualmente atractivo, sino que también proporciona una ventilación óptima para el sistema de frenos.</p>
+                <p className="mb-4">Esta punta de escape deportiva con acabado burnt titanium no solo mejora el aspecto trasero de tu vehículo, sino que también ofrece un sonido deportivo único.</p>
+                <p className="mb-4">Fabricada en acero inoxidable de alta calidad, resiste las altas temperaturas y la corrosión, garantizando durabilidad y rendimiento.</p>
+                <p>El diseño no solo es estéticamente atractivo, sino que también mejora el flujo de gases de escape, contribuyendo a un mejor rendimiento del motor.</p>
               </div>
             )}
             
             {activeTab === 'especificaciones' && (
               <ul className="space-y-2">
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Material: Aleación de aluminio forjado</li>
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Acabado: Negro mate con detalles maquinados</li>
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Diámetro: 17 pulgadas</li>
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Ancho: 8 pulgadas</li>
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Offset: ET35</li>
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Patrón de pernos: 5x114.3</li>
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Carga máxima: 690 kg</li>
-                <li className="flex"><span className="text-blue-400 mr-2">•</span>Peso: 11.2 kg</li>
+                <li className="flex"><span className="text-blue-400 mr-2">•</span>Material: Acero inoxidable 409</li>
+                <li className="flex"><span className="text-blue-400 mr-2">•</span>Acabado: Burnt Titanium</li>
+                <li className="flex"><span className="text-blue-400 mr-2">•</span>Diámetro: 102 mm</li>
+                <li className="flex"><span className="text-blue-400 mr-2">•</span>Longitud: 150 mm</li>
+                <li className="flex"><span className="text-blue-400 mr-2">•</span>Peso: 1.2 kg</li>
+                <li className="flex"><span className="text-blue-400 mr-2">•</span>Incluye tornillería de acero inoxidable</li>
+                <li className="flex"><span className="text-blue-400 mr-2">•</span>Fácil instalación</li>
               </ul>
             )}
             
             {activeTab === 'compatibilidad' && (
               <div>
-                <p className="mb-4">Estos rines son compatibles con una amplia gama de vehículos con patrón de pernos 5x114.3:</p>
+                <p className="mb-4">Esta punta de escape es universal y puede adaptarse a la mayoría de vehículos con modificaciones mínimas:</p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Honda Civic 2016-2021</li>
-                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Toyota Corolla 2017-2023</li>
-                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Mazda 3 2014-2019</li>
-                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Hyundai Elantra 2016-2020</li>
-                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Kia Forte 2019-2023</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Vehículos con tubo de escape de 2" a 3"</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Automóviles</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>Camionetas</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span>SUVs</li>
                 </ul>
-                <p className="mt-4 text-sm text-gray-400">* La compatibilidad puede variar según el año exacto y trim del vehículo.</p>
+                <p className="mt-4 text-sm text-gray-400">* Se recomienda verificar las medidas del tubo de escape actual antes de la compra.</p>
               </div>
             )}
           </div>

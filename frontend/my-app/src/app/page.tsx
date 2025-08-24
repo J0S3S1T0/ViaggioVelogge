@@ -78,7 +78,7 @@ export default function Home() {
       {/* Hero Section */}
       <div className="relative w-screen h-screen">
         <Image
-          src="/InicioCar.jpg"
+          src="/otros/InicioCar.jpg"
           alt="Inicio Car"
           fill
           priority
@@ -218,14 +218,14 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {[
               {
-                src: "/BuickLeSabre1959.png",
+                src: "/catalogo/Chevrolet/BuickLeSabre1959/BuickLeSabre1959.png",
                 alt: "Buick LeSabre 1959",
                 title: "Buick LeSabre 1959",
                 subtitle: "Elegancia Americana",
-                link: "/buick",
+                link: "/pages/catalogo/buick",
               },
               {
-                src: "/Ferrari250.png",
+                src: "/catalogo/Ferrari/ferrari250GTO/Ferrari250.png",
                 alt: "Ferrari 250 GTO",
                 title: "Ferrari 250 GTO",
                 subtitle: "Pura Sangre Italiana",
