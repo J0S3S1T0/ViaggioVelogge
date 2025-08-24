@@ -1,0 +1,5 @@
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=cesareduardo119
+DB_NAME=ViaggioVelogge
+SECRET_KEY=tu_clave_secreta_aqui
