@@ -104,7 +104,7 @@ export default function GaleriaAutosModificados() {
       subtitle: "Godzilla", 
       description: "Skyline GT-R R34 con motor RB26DETT mejorado, turbo twins actualizados y sistema AWD perfeccionado.",
       specs: ["RB26DETT Engine", "Twin Turbo", "AWD System", "600HP"],
-      link: "/gtr-r34",
+      link: "/pages/galeriaAutos/GTR34",
       category: "jdm",
       year: "2000",
       tags: ["jdm", "skyline", "gtr", "awd"]
@@ -230,13 +230,13 @@ export default function GaleriaAutosModificados() {
         <div className="relative w-full h-screen overflow-hidden">
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-fixed scale-110"
-            style={{ backgroundImage: "url('/otros/inicioGaleria.jpeg')" }}
+            style={{ backgroundImage: "url('/otros/inicioGaleria.png')" }}
           />
           <div className="absolute inset-0 bg-black/60 z-1" />
           <div className="relative z-2 h-full flex items-center justify-center">
             <div className="text-center text-white px-4">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-wider animate-fade-in">
-                VIAGGIO VELOCE
+                VIAGGIO VELOCCE
               </h1>
               <p className="text-xl md:text-2xl uppercase tracking-widest mb-8 animate-fade-in-up">
                 GALERÍA DE AUTOS MODIFICADOS
@@ -253,10 +253,30 @@ export default function GaleriaAutosModificados() {
           </div>
         </div>
 
+        {/* Imagen destacada de Viaggio Velogge */}
+        <div className="container mx-auto max-w-6xl px-4 mb-12 mt-8">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <img
+              src="/otros/inicioGaleria4.png" // Ruta de la imagen de Viaggio Velogge
+              alt="Viaggio Velogge - Auto destacado"
+              className="w-full h-80 md:h-[32rem] object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-8">
+              <div className="text-white">
+                <h2 className="text-2xl md:text-3xl font-bold mb-2">VIAGGIO VELOCCE</h2>
+                <p className="text-gray-300 max-w-2xl text-lg md:text-xl">
+                  Descubre el arte de la modificación automotriz con nuestros proyectos más exclusivos. 
+                  Cada auto es una obra de velocidad y estilo.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Navbar */}
         {showNav && (
           <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-lg transition-all duration-500">
-            <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</div>
+            <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCCE</div>
             <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
               <li className="hover:text-gray-300 transition"><a href="/">INICIO</a></li>
               <li className="hover:text-gray-300 transition"><a href="/#3d-gallery">3D GALLERY</a></li>
@@ -490,7 +510,7 @@ export default function GaleriaAutosModificados() {
           <div className="container mx-auto max-w-6xl">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="mb-8 md:mb-0">
-                <h2 className="text-3xl font-bold tracking-wider">VIAGGIO VELOCE</h2>
+                <h2 className="text-3xl font-bold tracking-wider">VIAGGIO VELOCCE</h2>
                 <p className="text-gray-400 text-lg mt-3">Portafolio de autos clásicos y modificados</p>
               </div>
               <div className="flex space-x-8 text-lg">
@@ -500,7 +520,7 @@ export default function GaleriaAutosModificados() {
               </div>
             </div>
             <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500 text-md">
-              © {new Date().getFullYear()} Viaggio Veloce. Todos los derechos reservados.
+              © {new Date().getFullYear()} Viaggio Velogge. Todos los derechos reservados.
             </div>
           </div>
         </footer>

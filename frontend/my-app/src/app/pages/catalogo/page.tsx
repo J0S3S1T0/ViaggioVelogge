@@ -46,7 +46,7 @@ export default function CatalogoPage() {
       model: "Chevrolet Impala",
       year: 1959,
       description: "Clásico americano con estilo único y elegancia atemporal. Un icono de la industria automotriz que representa la grandeza de los años 50.",
-      image: "https://images.unsplash.com/photo-1580274437636-1c384e567539?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      image: "/catalogo3D/chevrolet/Impala/Impala.png",
       views: "Detalles",
       link: "/impala",
       category: "clasico"
@@ -70,7 +70,7 @@ export default function CatalogoPage() {
       description: "Elegancia americana con detalles cromados y un interior lujoso. Representa el estilo y la comodidad de la época dorada de los automóviles americanos.",
       image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
       views: "Detalles",
-      link: "/buick",
+      link: "/pages/catalogo/buickLeSabre1959",
       category: "clasico"
     },
     {
@@ -147,7 +147,7 @@ export default function CatalogoPage() {
       {/* Navbar */}
       {showNav && (
         <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-lg transition-all duration-500">
-          <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</div>
+          <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOGGE</div>
           <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
             <li className="hover:text-blue-400 transition"><Link href="/">INICIO</Link></li>
             <li className="hover:text-blue-400 transition"><Link href="/galeriaAutos">GALERÍA</Link></li>
@@ -269,7 +269,7 @@ export default function CatalogoPage() {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-8 md:mb-0">
-              <h2 className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</h2>
+              <h2 className="text-2xl font-bold tracking-wider">VIAGGIO VELOGGE</h2>
               <p className="text-gray-400 mt-2">Galería de autos clásicos</p>
             </div>
             <div className="flex space-x-6">
@@ -278,7 +278,7 @@ export default function CatalogoPage() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500">
-            © {new Date().getFullYear()} Viaggio Veloce. Todos los derechos reservados.
+            © {new Date().getFullYear()} Viaggio Velogge. Todos los derechos reservados.
           </div>
         </div>
       </footer>

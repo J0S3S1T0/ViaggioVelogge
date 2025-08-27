@@ -62,7 +62,7 @@ export default function GaleriaPage() {
       {/* Navbar de Viaggio Veloce */}
       {showNav && (
         <nav className="fixed top-0 left-0 w-full bg-black/95 backdrop-blur-md text-white z-50 flex justify-between items-center px-8 py-4 shadow-xl transition-all duration-500 border-b border-gray-800">
-          <Link href="/" className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</Link>
+          <Link href="/" className="text-2xl font-bold tracking-wider">VIAGGIO VELOGGE</Link>
           <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
             <li className="hover:text-blue-400 transition"><Link href="/">INICIO</Link></li>
             <li className="text-blue-400 border-b-2 border-blue-400 pb-1"><Link href="/catalogo3D">3D GALLERY</Link></li>
@@ -227,7 +227,7 @@ export default function GaleriaPage() {
       <footer className="bg-black border-t border-gray-800 py-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="mb-6">
-            <h3 className="text-2xl font-bold text-white mb-2">VIAGGIO VELOCE</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">VIAGGIO VELOGGE</h3>
             <p className="text-gray-400">Galería de autos clásicos y modificados</p>
           </div>
           <div className="flex justify-center space-x-6 mb-6">
@@ -236,7 +236,7 @@ export default function GaleriaPage() {
             <a href="#" className="text-gray-400 hover:text-white transition">Twitter</a>
           </div>
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Viaggio Veloce. Todos los derechos reservados.
+            © {new Date().getFullYear()} Viaggio Velogge. Todos los derechos reservados.
           </p>
         </div>
       </footer>

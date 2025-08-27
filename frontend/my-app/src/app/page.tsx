@@ -86,7 +86,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center z-10">
-            <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-wider">VIAGGIO VELOCE</h1>
+            <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-wider">VIAGGIO VELOGGE</h1>
             <p className="text-xl md:text-2xl uppercase tracking-widest">PORTAFOLIO DE AUTOS</p>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function Home() {
       {/* Navbar */}
       {showNav && (
         <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-lg transition-all duration-500">
-          <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOCE</div>
+          <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOGGE</div>
           <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
             <li className="hover:text-gray-300 transition"><a href="#inicio">INICIO</a></li>
             <li className="hover:text-gray-300 transition"><a href="/pages/catalogo3D">3D GALLERY</a></li>
@@ -222,7 +222,7 @@ export default function Home() {
                 alt: "Buick LeSabre 1959",
                 title: "Buick LeSabre 1959",
                 subtitle: "Elegancia Americana",
-                link: "/pages/catalogo/buick",
+                link: "/pages/catalogo/buickLeSabre1959",
               },
               {
                 src: "/catalogo/Ferrari/ferrari250GTO/Ferrari250.png",
@@ -266,7 +266,7 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-8 md:mb-0">
-              <h2 className="text-3xl font-bold tracking-wider">VIAGGIO VELOCE</h2>
+              <h2 className="text-3xl font-bold tracking-wider">VIAGGIO VELOGGE</h2>
               <p className="text-gray-400 text-lg mt-3">Portafolio de autos clásicos y modificados</p>
             </div>
             <div className="flex space-x-8 text-lg">
@@ -276,7 +276,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500 text-md">
-            © {new Date().getFullYear()} Viaggio Veloce. Todos los derechos reservados.
+            © {new Date().getFullYear()} Viaggio Velogge. Todos los derechos reservados.
           </div>
         </div>
       </footer>

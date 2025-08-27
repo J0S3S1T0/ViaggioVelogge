@@ -56,7 +56,7 @@ export default function TiendaAccesorios() {
       categoria: "Escape",
       precio: 149990,
       precioFormateado: "$149.990",
-      imagen: "/tienda/tubosEscapes/TuboEscape.png",
+      imagen: "/tienda/tubosEscapes/TuboEscape.jpg",
       link: "/pages/tienda/1"
     },
     {
