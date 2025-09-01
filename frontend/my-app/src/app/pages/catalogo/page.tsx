@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Componente de ícono personalizado
 const ArrowRight = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline ml-1">
     <path d="M5 12h14"/>
     <path d="m12 5 7 7-7 7"/>
   </svg>
@@ -24,31 +25,21 @@ const FilterIcon = () => (
 );
 
 export default function CatalogoPage() {
-  const [showNav, setShowNav] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('todos');
   const [showFilters, setShowFilters] = useState(false);
-
-  // Efecto para el navbar al hacer scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowNav(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Datos de los autos
   const cars = [
     {
       id: 1,
-      name: "Impala 1959",
-      model: "Chevrolet Impala",
+      name: "Honda NSX",
+      model: "Honda",
       year: 1959,
       description: "Clásico americano con estilo único y elegancia atemporal. Un icono de la industria automotriz que representa la grandeza de los años 50.",
-      image: "/catalogo3D/chevrolet/Impala/Impala.png",
+      image: "/catalogo/Honda/hondaNSX/HondaNSX.png",
       views: "Detalles",
-      link: "/impala",
+      link: "/pages/catalogo/hondaNSX",
       category: "clasico"
     },
     {
@@ -57,7 +48,7 @@ export default function CatalogoPage() {
       model: "Ferrari Testarossa",
       year: 1984,
       description: "Deportivo italiano icónico de los años 80 con diseño aerodinámico y un motor de 12 cilindros que marcó una era en los superdeportivos.",
-      image: "https://images.unsplash.com/photo-1601268859287-9cec8a74e9f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      image: "/catalogo3D/chevrolet/Ferrari/Testarossa/testarossa.png",
       views: "Detalles",
       link: "/testarossa",
       category: "deportivo"
@@ -79,7 +70,7 @@ export default function CatalogoPage() {
       model: "Ferrari 250 GTO",
       year: 1962,
       description: "Una de las piezas más codiciadas del mundo automotriz, con solo 36 unidades fabricadas. Considerada la obra maestra de Enzo Ferrari.",
-      image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      image: "/catalogo/Ferrari/ferrari250GTO/Ferrari250.png",
       views: "Detalles",
       link: "/pages/catalogo/ferrari250",
       category: "leyenda"
@@ -143,25 +134,23 @@ export default function CatalogoPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      {/* Navbar */}
-      {showNav && (
-        <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-lg transition-all duration-500">
-          <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOGGE</div>
-          <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
-            <li className="hover:text-blue-400 transition"><Link href="/">INICIO</Link></li>
-            <li className="hover:text-blue-400 transition"><Link href="/galeriaAutos">GALERÍA</Link></li>
-            <li className="hover:text-blue-400 transition"><Link href="/catalogo3D">CATÁLOGO 3D</Link></li>
-          </ul>
-        </nav>
-      )}
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-gray-200 pt-16"> {/* Añadido pt-16 para compensar la altura del navbar fijo */}
+      {/* Navbar fijo siempre */}
+      <nav className="fixed top-0 left-0 w-full bg-black/95 backdrop-blur-sm text-white z-50 flex justify-between items-center px-8 py-4 shadow-xl">
+        <div className="text-2xl font-bold tracking-wider">VIAGGIO VELOGGE</div>
+        <ul className="hidden md:flex gap-8 uppercase text-sm tracking-wider">
+          <li className="hover:text-blue-400 transition"><Link href="/">INICIO</Link></li>
+          <li className="hover:text-blue-400 transition"><Link href="/galeriaAutos">GALERÍA</Link></li>
+          <li className="hover:text-blue-400 transition"><Link href="/catalogo3D">CATÁLOGO 3D</Link></li>
+        </ul>
+      </nav>
 
       {/* Hero Section */}
-      <div className="relative pt-24 pb-12 px-4 md:px-8 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          Galería de Autos Clásicos
+      <div className="pt-24 pb-12 px-4 md:px-8 text-center"> {/* Cambiado de relative pt-24 a pt-24 solamente */}
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+          COLECCIÓN CLÁSICA
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+        <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
           Descubre nuestra colección de automóviles emblemáticos
         </p>
 
@@ -176,14 +165,14 @@ export default function CatalogoPage() {
               placeholder="Buscar autos por nombre, modelo o descripción..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full bg-gray-900 border border-gray-800 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
             />
           </div>
 
           {/* Botón toggle para filtros en móvil */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="md:hidden flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors mb-4"
+            className="md:hidden flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-4 py-2 rounded-lg transition-colors mb-4 border border-gray-800"
           >
             <FilterIcon />
             <span>{showFilters ? 'Ocultar' : 'Mostrar'} Filtros</span>
@@ -198,8 +187,8 @@ export default function CatalogoPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm transition-colors ${
                     selectedCategory === category
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                      ? 'bg-blue-700 text-white'
+                      : 'bg-gray-900 text-gray-400 hover:bg-gray-800 border border-gray-800'
                   }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -212,45 +201,50 @@ export default function CatalogoPage() {
 
       {/* Contador de resultados */}
       <div className="container mx-auto px-4 md:px-8 mb-6">
-        <p className="text-gray-400 text-center">
+        <p className="text-gray-500 text-center">
           Mostrando {filteredCars.length} de {cars.length} autos
           {searchTerm && ` para "${searchTerm}"`}
           {selectedCategory !== 'todos' && ` en ${selectedCategory}`}
         </p>
       </div>
 
-      {/* Grid de autos - TARJETAS MÁS GRANDES */}
+      {/* Grid de autos - ESTILO MEJORADO */}
       <div className="container mx-auto px-4 md:px-8 pb-16">
         {filteredCars.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredCars.map((car) => (
-              <div key={car.id} className="group bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 transform hover:-translate-y-1">
-                {/* Imagen del auto - más grande */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={car.image}
-                    alt={car.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <div key={car.id} className="group bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-900/20 transform hover:-translate-y-1 transition-all duration-500">
+                {/* Imagen del auto - ESTILO MEJORADO */}
+                <div className="relative h-72 w-full overflow-hidden flex justify-center items-center">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={car.image}
+                      alt={car.name}
+                      fill
+                      className="object-scale-down scale-90 transition-transform duration-700 group-hover:scale-100"
+                      quality={90}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                  <div className="absolute top-4 right-4 bg-black/80 text-white px-3 py-1 rounded-full text-sm font-medium">
                     {car.views}
                   </div>
                 </div>
 
-                {/* Contenido de la tarjeta - más espaciado */}
+                {/* Contenido de la tarjeta - ESTILO MEJORADO */}
                 <div className="p-6">
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold mb-1">{car.name}</h3>
-                    <p className="text-gray-400 text-base">{car.model} • {car.year}</p>
-                  </div>
-                  <p className="text-gray-300 text-base mb-5 line-clamp-3">{car.description}</p>
+                  <h3 className="text-2xl font-bold mb-2 text-white">{car.name}</h3>
+                  <p className="text-gray-400 text-base mb-3">{car.model} • {car.year}</p>
+                  <p className="text-gray-400 text-sm mb-5 line-clamp-2">{car.description}</p>
                   
-                  <Link
-                    href={car.link}
-                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium text-lg transition-colors group-hover:gap-3"
-                  >
-                    Explorar detalles <ArrowRight />
-                  </Link>
+                  <div className="border-t border-gray-800 pt-4 mt-4">
+                    <Link
+                      href={car.link}
+                      className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors group-hover:gap-3"
+                    >
+                      Explorar detalles <ArrowRight />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -258,35 +252,35 @@ export default function CatalogoPage() {
         ) : (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl text-gray-400 mb-2">No se encontraron autos</h3>
-            <p className="text-gray-500">Intenta con otros términos de búsqueda o filtros</p>
+            <h3 className="text-xl text-gray-500 mb-2">No se encontraron autos</h3>
+            <p className="text-gray-600">Intenta con otros términos de búsqueda o filtros</p>
           </div>
         )}
       </div>
 
       {/* Footer */}
-      <footer className="bg-black border-t border-gray-700 py-12 px-4 md:px-8">
+      <footer className="bg-black border-t border-gray-800 py-12 px-4 md:px-8">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-8 md:mb-0">
-              <h2 className="text-2xl font-bold tracking-wider">VIAGGIO VELOGGE</h2>
-              <p className="text-gray-400 mt-2">Galería de autos clásicos</p>
+              <h2 className="text-2xl font-bold tracking-wider text-white">VIAGGIO VELOGGE</h2>
+              <p className="text-gray-500 mt-2">Galería de autos clásicos</p>
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white transition">Instagram</a>
-              <a href="#" className="text-gray-400 hover:text-white transition">Facebook</a>
+              <a href="#" className="text-gray-500 hover:text-white transition">Instagram</a>
+              <a href="#" className="text-gray-500 hover:text-white transition">Facebook</a>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500">
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-600">
             © {new Date().getFullYear()} Viaggio Velogge. Todos los derechos reservados.
           </div>
         </div>
       </footer>
 
       <style jsx global>{`
-        .line-clamp-3 {
+        .line-clamp-2 {
           display: -webkit-box;
-          -webkit-line-clamp: 3;
+          -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
@@ -297,16 +291,16 @@ export default function CatalogoPage() {
         }
         
         ::-webkit-scrollbar-track {
-          background: #1f2937;
+          background: #111827;
         }
         
         ::-webkit-scrollbar-thumb {
-          background: #4b5563;
+          background: #374151;
           border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-          background: #6b7280;
+          background: #4B5563;
         }
       `}</style>
     </div>

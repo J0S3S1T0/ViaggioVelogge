@@ -35,7 +35,7 @@ export default function Home() {
       link: "/impala",
     },
     {
-      src: "/testarossa.png",
+      src: "/catalogo3D/Ferrari/Testarossa/testarossa.png",
       alt: "Ferrari Testarossa",
       title: "Ferrari Testarossa",
       subtitle: "Leyenda Italiana en 3D", 

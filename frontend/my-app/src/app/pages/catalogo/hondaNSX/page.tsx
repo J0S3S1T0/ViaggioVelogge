@@ -318,7 +318,7 @@ const ArrowRight = () => (
   </svg>
 );
 
-export default function Ferrari250GTOPage() {
+export default function HondaNSXPage() {
   const [carAnimation, setCarAnimation] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -369,12 +369,12 @@ export default function Ferrari250GTOPage() {
       <div className="px-8 pt-32 pb-8">
         <section className="text-center mb-12 bg-gray-800 py-8 rounded-lg">
           <div className="flex justify-center items-center gap-4 mb-4">
-            <h1 className="text-4xl font-bold">FERRARI 250 GTO 1962</h1>
+            <h1 className="text-4xl font-bold">HONDA NSX 1990</h1>
           </div>
           <div className="flex justify-center">
             <Image
-              src="/catalogo/Ferrari/ferrari250GTO/Ferrari250.png"
-              alt="Ferrari 250 GTO"
+              src="/catalogo/Honda/hondaNSX/HondaNSX.png"
+              alt="Honda NSX 1990"
               width={800}
               height={400}
               className={`rounded-lg shadow-lg transform transition-all duration-1000 ease-out ${carAnimation ? 'translate-x-0 opacity-100 scale-100' : '-translate-x-full opacity-30 scale-90'}`}
@@ -386,22 +386,22 @@ export default function Ferrari250GTOPage() {
         <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div className="flex justify-center">
             <Image 
-              src="/catalogo/Ferrari/ferrari250GTO/Ferrari250VistaFrotal.png" 
-              alt="Vista frontal del Ferrari 250 GTO" 
+              src="/catalogo/Honda/hondaNSX/HondaNSXVistaFrontal.png" 
+              alt="Vista frontal del Honda NSX" 
               width={550} 
               height={350} 
               className="rounded-lg shadow-lg object-contain h-80"
             />
           </div>
           <div className="text-lg text-gray-300 leading-relaxed bg-gray-800 p-8 rounded-lg">
-            <h2 className="text-2xl font-bold mb-5 text-blue-400">LEYENDA AUTOMOTRIZ</h2>
+            <h2 className="text-2xl font-bold mb-5 text-blue-400">REVOLUCIÓN JAPONESA</h2>
             <p className="mb-5">
-              El Ferrari 250 GTO es uno de los automóviles más legendarios y valiosos del mundo. Diseñado para competir en las carreras de gran turismo de los años 60, 
-              combina elegancia, rendimiento y exclusividad como ninguna otra obra maestra automotriz.
+              El Honda NSX (New Sportscar eXperimental) es un automóvil deportivo que revolucionó la industria automotriz cuando se presentó en 1990. 
+              Fue el primer superdeportivo japonés que compitió directamente con marcas europeas establecidas como Ferrari y Porsche.
             </p>
             <p>
-              Con solo 36 unidades fabricadas, este modelo es una verdadera pieza de colección que ha alcanzado precios récord en subastas internacionales, 
-              superando los 70 millones de dólares, convirtiéndose en el automóvil más valioso de la historia.
+              Desarrollado con la participación del piloto de Fórmula 1 Ayrton Senna, el NSX introdujo innovaciones como un chasis de aluminio, 
+              motor central trasero y una experiencia de conducción que priorizaba la manejabilidad y confiabilidad sobre los números brutos de rendimiento.
             </p>
           </div>
         </section>
@@ -409,15 +409,15 @@ export default function Ferrari250GTOPage() {
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center mb-16">
           <div className="space-y-6">
             <div className="bg-gray-800 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-2">280 Km/h</h2>
+              <h2 className="text-2xl font-semibold mb-2">270 Km/h</h2>
               <p className="text-gray-400">Velocidad máxima</p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-2">4s</h2>
+              <h2 className="text-2xl font-semibold mb-2">5.7s</h2>
               <p className="text-gray-400">Aceleración de 0-100 km/h</p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-2">300 HP</h2>
+              <h2 className="text-2xl font-semibold mb-2">274 HP</h2>
               <p className="text-gray-400">Potencia máxima</p>
             </div>
           </div>
@@ -426,7 +426,7 @@ export default function Ferrari250GTOPage() {
           </div>
           <div className="space-y-6">
             <div className="bg-gray-800 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-2">294 Nm</h2>
+              <h2 className="text-2xl font-semibold mb-2">280 Nm</h2>
               <p className="text-gray-400">Torque máximo</p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg">
@@ -434,7 +434,7 @@ export default function Ferrari250GTOPage() {
               <p className="text-gray-400">Cilindrada</p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-2">880 kg</h2>
+              <h2 className="text-2xl font-semibold mb-2">1350 kg</h2>
               <p className="text-gray-400">Peso</p>
             </div>
           </div>
@@ -447,8 +447,8 @@ export default function Ferrari250GTOPage() {
             <div className="space-y-6">
               <div className="bg-gray-700 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-3 text-blue-400">Configuración</h3>
-                <p className="text-gray-300">V12 a 60° delantero longitudinal</p>
-                <p className="text-gray-400 text-sm mt-2">2.953 cm³ (3.0 L)</p>
+                <p className="text-gray-300">V6 a 90° trasero longitudinal</p>
+                <p className="text-gray-400 text-sm mt-2">2.977 cm³ (3.0 L)</p>
               </div>
               <div className="bg-gray-700 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-3 text-blue-400">Transmisión</h3>
@@ -459,8 +459,8 @@ export default function Ferrari250GTOPage() {
             
             <div className="flex justify-center">
               <Image 
-                src="/catalogo/Ferrari/ferrari250GTO/MotorFerrari240V8.png" 
-                alt="Motor Ferrari GTO" 
+                src="/catalogo/Honda/hondaNSX/HondaNSXMotor.png" 
+                alt="Motor Honda NSX" 
                 width={400} 
                 height={300} 
                 className="rounded-lg shadow-lg object-contain h-64"
@@ -471,13 +471,13 @@ export default function Ferrari250GTOPage() {
             <div className="space-y-6">
               <div className="bg-gray-700 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-3 text-blue-400">Rendimiento</h3>
-                <p className="text-gray-300">300 CV a 7.500 rpm</p>
-                <p className="text-gray-400 text-sm mt-2">294 Nm de par máximo</p>
+                <p className="text-gray-300">274 CV a 7.300 rpm</p>
+                <p className="text-gray-400 text-sm mt-2">280 Nm de par máximo</p>
               </div>
               <div className="bg-gray-700 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-blue-400">Alimentación</h3>
-                <p className="text-gray-300">Seis carburadores Weber</p>
-                <p className="text-gray-400 text-sm mt-2">Tipo de combustible: Gasolina</p>
+                <h3 className="text-lg font-semibold mb-3 text-blue-400">Tecnología</h3>
+                <p className="text-gray-300">VTEC, DOHC, 4 válvulas por cilindro</p>
+                <p className="text-gray-400 text-sm mt-2">Inyección electrónica PGM-FI</p>
               </div>
             </div>
           </div>
@@ -488,8 +488,8 @@ export default function Ferrari250GTOPage() {
 
           <div className="mb-12">
             <Image
-              src="/catalogo/Ferrari/ferrari250GTO/Ferrari250VistaArriba.png"
-              alt="Vista lateral del Ferrari 250 GTO"
+              src="/catalogo/Honda/hondaNSX/HondaNSXVistaArriba.png"
+              alt="Vista lateral del Honda NSX"
               width={800}
               height={400}
               className="mx-auto rounded-lg shadow-lg object-contain h-64"
@@ -499,24 +499,24 @@ export default function Ferrari250GTOPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Altura</p>
-              <p className="text-xl">1.210 mm</p>
+              <p className="text-xl">1.170 mm</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Batalla</p>
-              <p className="text-xl">2.400 mm</p>
+              <p className="text-xl">2.530 mm</p>
               <p className="text-sm text-gray-500 mt-2">Distancia entre ejes</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Longitud</p>
-              <p className="text-xl">4.325 mm</p>
+              <p className="text-xl">4.430 mm</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Ancho</p>
-              <p className="text-xl">1.600 mm</p>
+              <p className="text-xl">1.810 mm</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Peso</p>
-              <p className="text-xl">880 kg</p>
+              <p className="text-xl">1.350 kg</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Capacidad</p>
@@ -524,11 +524,11 @@ export default function Ferrari250GTOPage() {
             </div>
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Consumo ciudad</p>
-              <p className="text-xl">15.0 l/100km</p>
+              <p className="text-xl">12.5 l/100km</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg">
               <p className="text-lg font-semibold mb-2">Consumo autopista</p>
-              <p className="text-xl">10.0 l/100km</p>
+              <p className="text-xl">8.5 l/100km</p>
             </div>
           </div>
         </section>
@@ -537,20 +537,20 @@ export default function Ferrari250GTOPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-blue-400">HISTORIA</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <HistoryCard
-              periodo="1962–1963"
-              titulo="Ferrari GTO Serie I"
-              descripcion="Es el diseño más clásico y reconocido del GTO, con las 3 tomas de aire frontales y un perfil más delgado."
-              infoAdicional="Se fabricaron 33 unidades originales de este modelo. Diseñado por Giotto Bizzarrini, el 250 GTO fue creado para homologar el modelo para competir en el Campeonato Internacional de GT. Considerado uno de los diseños más elegantes de la historia automotriz, ganó numerosas competiciones incluyendo el Tour de France en 1963 y 1964."
-              imagenFrente="/catalogo/Ferrari/ferrari250GTO/Ferrari250Historia1.png"
-              imagenReverso="/catalogo/Ferrari/ferrari250GTO/Ferrari250Historia1.png"
+              periodo="1990-2005"
+              titulo="Honda NSX Primera Generación"
+              descripcion="El NSX original, diseñado por Pininfarina, presentaba un revolucionario chasis de aluminio y un motor V6 con tecnología VTEC."
+              infoAdicional="El desarrollo del NSX contó con la participación directa del tricampeón de Fórmula 1 Ayrton Senna, quien realizó ajustes en el chasis y la suspensión. Fue el primer automóvil de producción en utilizar un chasis monocasco de aluminio, reduciendo significativamente el peso. Su motor V6 con sistema VTEC ofrecía un rendimiento excepcional con una confiabilidad nunca antes vista en un superdeportivo."
+              imagenFrente="/catalogo/Honda/hondaNSX/HondaNSX.png"
+              imagenReverso="/catalogo/Honda/hondaNSX/HondaNSX.png"
             />
             <HistoryCard
-              periodo="1964"
-              titulo="Ferrari GTO Serie II"
-              descripcion="Parte trasera más alta y redondeada, inspirada en el Ferrari 250 LM. Más aerodinámico y con mejor rendimiento en pista."
-              infoAdicional="Solo se fabricaron 3 unidades nuevas con esta carrocería. Esta versión presentaba un parabrisas más inclinado y líneas laterales modificadas para mejorar la estabilidad a alta velocidad. En 2018, un Ferrari 250 GTO de 1962 se vendió por $48.4 millones, estableciendo un récord como el auto más caro jamás vendido en una subasta pública."
-              imagenFrente="/catalogo/Ferrari/ferrari250GTO/Ferrari250Historia2.png"
-              imagenReverso="/catalogo/Ferrari/ferrari250GTO/Ferrari250Historia2.png"
+              periodo="2016-Presente"
+              titulo="Honda NSX Segunda Generación"
+              descripcion="El NSX de segunda generación presenta un sistema híbrido de tres motores eléctricos y un motor twin-turbo V6."
+              infoAdicional="La segunda generación del NSX se presentó en 2016 después de más de una década de ausencia. Este modelo incorpora un sistema híbrido complejo con tres motores eléctricos (dos en el eje delantero y uno integrado con el motor) que combinados con un motor V6 biturbo producen 581 CV. Utiliza una transmisión de doble embrague de 9 velocidades y ofrece tracción integral gracias a su sistema híbrido."
+              imagenFrente="/catalogo/Honda/hondaNSX/HondaNSX.png"
+              imagenReverso="/catalogo/Honda/hondaNSX/HondaNSX.png"
             />
           </div>
         </section>
@@ -558,7 +558,7 @@ export default function Ferrari250GTOPage() {
         <section className="mt-20 bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-8 rounded-lg text-center border border-gray-700">
           <h2 className="text-3xl font-bold mb-6">¿Necesitas más información?</h2>
           <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Nuestros asesores especializados están disponibles para responder todas tus preguntas sobre esta legendaria Ferrari y otros modelos exclusivos de nuestra colección.
+            Nuestros asesores especializados están disponibles para responder todas tus preguntas sobre este revolucionario Honda NSX y otros modelos exclusivos de nuestra colección.
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-6">
             <a
