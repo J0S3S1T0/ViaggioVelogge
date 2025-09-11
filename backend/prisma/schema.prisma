@@ -1,0 +1,327 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model accesorio {
+  idAccesorio          Int                 @id @default(autoincrement())
+  nombreAccesorio      String?             @db.VarChar(100)
+  descripcionAccesorio String?             @db.VarChar(50)
+  precioAccesorio      Int?
+  vehiculoIdAccesorio  Int?
+  vehiculo             vehiculo?           @relation(fields: [vehiculoIdAccesorio], references: [idVehiculo], onDelete: Restrict, onUpdate: Restrict, map: "accesorio_ibfk_1")
+  categoriamodelo      categoriamodelo[]
+  vehiculoaccesorio    vehiculoaccesorio[]
+
+  @@index([vehiculoIdAccesorio], map: "vehiculoIdAccesorio")
+}
+
+model alembic_version {
+  version_num String @id @db.VarChar(32)
+}
+
+model asesor {
+  idAsesor        Int        @id @default(autoincrement())
+  nombreAsesor    String?    @db.VarChar(60)
+  apellidoAsesor  String?    @db.VarChar(60)
+  correoAsesor    String?    @db.VarChar(60)
+  telefonoAsesor  Int?
+  documentoAsesor Int?
+  asesoria        asesoria[]
+}
+
+model asesoria {
+  idAsesoria             Int                 @id @default(autoincrement())
+  fechaSolicitudAsesoria DateTime?           @db.Date
+  estadoAsesoria         String?             @db.VarChar(50)
+  necesidadAsesoria      String?             @db.VarChar(500)
+  usuarioIdAsesoria      Int?
+  asesorIdAsesoria       Int?
+  tipoAsesoriaIdAsesoria Int?
+  asesor                 asesor?             @relation(fields: [asesorIdAsesoria], references: [idAsesor], onDelete: Restrict, onUpdate: Restrict, map: "asesoria_ibfk_1")
+  tipoasesoria           tipoasesoria?       @relation(fields: [tipoAsesoriaIdAsesoria], references: [idTipoAsesoria], onDelete: Restrict, onUpdate: Restrict, map: "asesoria_ibfk_2")
+  usuario                usuario?            @relation(fields: [usuarioIdAsesoria], references: [idUsuario], onDelete: Restrict, onUpdate: Restrict, map: "asesoria_ibfk_3")
+  historialasesoria      historialasesoria[]
+  servicio               servicio[]
+  usuarioasesoria        usuarioasesoria[]
+
+  @@index([asesorIdAsesoria], map: "asesorIdAsesoria")
+  @@index([tipoAsesoriaIdAsesoria], map: "tipoAsesoriaIdAsesoria")
+  @@index([usuarioIdAsesoria], map: "usuarioIdAsesoria")
+}
+
+model blogexperiencia {
+  idBlogExperiencia              Int      @id @default(autoincrement())
+  fechaPublicidadBlogExperiencia String?  @db.VarChar(500)
+  usuarioIdBlogExperiencia       Int?
+  usuario                        usuario? @relation(fields: [usuarioIdBlogExperiencia], references: [idUsuario], onDelete: Restrict, onUpdate: Restrict, map: "blogexperiencia_ibfk_1")
+
+  @@index([usuarioIdBlogExperiencia], map: "usuarioIdBlogExperiencia")
+}
+
+model categoria {
+  idCategoria     Int      @id @default(autoincrement())
+  estadoCategoria String?  @db.VarChar(45)
+  nombreCategoria String?  @db.VarChar(60)
+  modelo          modelo[]
+}
+
+model categoriamodelo {
+  idCategoriaModelo Int        @id @default(autoincrement())
+  idModelo          Int?
+  idAccesorio       Int?
+  accesorio         accesorio? @relation(fields: [idAccesorio], references: [idAccesorio], onDelete: Restrict, onUpdate: Restrict, map: "categoriamodelo_ibfk_1")
+  modelo            modelo?    @relation(fields: [idModelo], references: [idModelo], onDelete: Restrict, onUpdate: Restrict, map: "categoriamodelo_ibfk_2")
+
+  @@index([idAccesorio], map: "idAccesorio")
+  @@index([idModelo], map: "idModelo")
+}
+
+model compararvehiculos {
+  idCompararVehiculos          Int     @id @default(autoincrement())
+  descripcionCompararVehiculos String? @db.VarChar(60)
+  velocidadMaxima              Int?
+  aceleracion                  Int?
+  motor                        String? @db.VarChar(50)
+  tipoMotor                    String? @db.VarChar(50)
+  potencia                     Int?
+  tipoTransmision              String? @db.VarChar(50)
+  historia                     String? @db.VarChar(50)
+  altura                       Int?
+  longitud                     String? @db.VarChar(50)
+  batalla                      String? @db.VarChar(50)
+  ancho                        Int?
+  numeroCilindros              String? @db.VarChar(50)
+  cilindrada                   String? @db.VarChar(50)
+  velocidadMaximaMotor         Int?
+  carrera                      String? @db.VarChar(50)
+  parMaximoNm                  String? @db.VarChar(50)
+  potenciaMaximaLitro          String? @db.VarChar(50)
+  calibre                      String? @db.VarChar(50)
+}
+
+model componentesbodykit {
+  idComponentesBodyKit          Int                         @id @default(autoincrement())
+  descripcionComponentesBodyKit String?                     @db.VarChar(60)
+  rejillasVentilacion           String?                     @db.VarChar(60)
+  faciasDelantera               String?                     @db.VarChar(50)
+  splitter                      String?                     @db.VarChar(60)
+  capo                          String?                     @db.VarChar(50)
+  parachoquesDelantero          String?                     @db.VarChar(60)
+  parachoquesTrasero            String?                     @db.VarChar(50)
+  aleron                        String?                     @db.VarChar(60)
+  difusorTrasero                String?                     @db.VarChar(50)
+  guardaBarrosTrasero           String?                     @db.VarChar(60)
+  falda                         String?                     @db.VarChar(50)
+  guardaBarrosDelantero         String?                     @db.VarChar(60)
+  galeriavehiculomodificado     galeriavehiculomodificado[]
+}
+
+model galeriavehiculomodificado {
+  idGaleriaVehiculoModificado             Int                 @id @default(autoincrement())
+  nombreVehiculoGaleriaVehiculoModificado String?             @db.VarChar(100)
+  descripcionGaleriaVehiculoModificado    String?             @db.VarChar(100)
+  bodyKit                                 Int?
+  pintura                                 Int?
+  ruedaNeumaticos                         String?             @db.VarChar(50)
+  suspension                              String?             @db.VarChar(50)
+  aerodinamica                            Int?
+  usuarioIdGaleriaVehiculoModificado      Int?
+  vehiculoIdGaleriaVehiculoModificado     Int?
+  componentesBodyGaleria                  Int?
+  componentesbodykit                      componentesbodykit? @relation(fields: [componentesBodyGaleria], references: [idComponentesBodyKit], onDelete: Restrict, onUpdate: Restrict, map: "galeriavehiculomodificado_ibfk_1")
+  usuario                                 usuario?            @relation(fields: [usuarioIdGaleriaVehiculoModificado], references: [idUsuario], onDelete: Restrict, onUpdate: Restrict, map: "galeriavehiculomodificado_ibfk_2")
+  vehiculo                                vehiculo?           @relation(fields: [vehiculoIdGaleriaVehiculoModificado], references: [idVehiculo], onDelete: Restrict, onUpdate: Restrict, map: "galeriavehiculomodificado_ibfk_3")
+
+  @@index([componentesBodyGaleria], map: "componentesBodyGaleria")
+  @@index([usuarioIdGaleriaVehiculoModificado], map: "usuarioIdGaleriaVehiculoModificado")
+  @@index([vehiculoIdGaleriaVehiculoModificado], map: "vehiculoIdGaleriaVehiculoModificado")
+}
+
+model historialasesoria {
+  idHistorialAsesoria            Int       @id @default(autoincrement())
+  comentariosHistorialAsesoria   String?   @db.VarChar(500)
+  fechaRegistroHistorialAsesoria DateTime? @db.Date
+  asesoriaIdHistorialAsesoria    Int?
+  asesoria                       asesoria? @relation(fields: [asesoriaIdHistorialAsesoria], references: [idAsesoria], onDelete: Restrict, onUpdate: Restrict, map: "historialasesoria_ibfk_1")
+
+  @@index([asesoriaIdHistorialAsesoria], map: "asesoriaIdHistorialAsesoria")
+}
+
+model marca {
+  idMarca         Int        @id @default(autoincrement())
+  nombreMarca     String?    @db.VarChar(50)
+  paisOrigenMarca String?    @db.VarChar(50)
+  vehiculo        vehiculo[]
+}
+
+model modelo {
+  idModelo               Int               @id @default(autoincrement())
+  referenciaModelo       String?           @db.VarChar(60)
+  marcaModelo            String?           @db.VarChar(60)
+  fechaLanzamientoModelo DateTime?         @db.Date
+  categoriaIdModelo      Int?
+  categoriamodelo        categoriamodelo[]
+  categoria              categoria?        @relation(fields: [categoriaIdModelo], references: [idCategoria], onDelete: Restrict, onUpdate: Restrict, map: "modelo_ibfk_1")
+  vehiculo               vehiculo[]
+
+  @@index([categoriaIdModelo], map: "categoriaIdModelo")
+}
+
+model modelo3d {
+  idModelo3D                           Int       @id @default(autoincrement())
+  descripcionTiendaAccesorio           String?   @db.VarChar(60)
+  estadoTiendaAccesorio                String?   @db.VarChar(60)
+  A_o                                  DateTime? @map("Año") @db.Date
+  marca                                Int?
+  modelo                               String?   @db.VarChar(50)
+  accesorio                            String?   @db.VarChar(50)
+  seleccionVehiculo                    Int?
+  caracteristicasAcceosiroSeleccionado String?   @db.VarChar(50)
+}
+
+model perfilusuario {
+  idPerfilUsuario          Int       @id @default(autoincrement())
+  descripcionPerfilUsuario String?   @db.VarChar(60)
+  estadoPerfilUsuario      String?   @db.VarChar(60)
+  contrase_aPerfilUsuario  String?   @map("contraseñaPerfilUsuario") @db.VarChar(60)
+  descripcionPerfilUsario  DateTime? @db.Date
+  correo                   Int?
+  genero                   Boolean?
+  numero                   Int?
+  pais                     String?   @db.VarChar(50)
+  edad                     Int?
+  imagenPerfilUsuario      Boolean?
+  modelo                   String?   @db.VarChar(50)
+  marca                    Int?
+  a_o                      DateTime? @map("año") @db.Date
+  motor                    String?   @db.VarChar(50)
+  transmision              String?   @db.VarChar(50)
+  kilometraje              Int?
+  traccion                 String?   @db.VarChar(50)
+  usoPrincipal             String?   @db.VarChar(50)
+  estilo                   String?   @db.VarChar(50)
+  finalidad                String?   @db.VarChar(50)
+  modificaciones           String?   @db.VarChar(50)
+  componentesDestacados    String?   @db.VarChar(50)
+  mejorasDeseadas          String?   @db.VarChar(50)
+  presupuestoEstimado      Int?
+  objetivo                 String?   @db.VarChar(50)
+}
+
+model rol {
+  idRol          Int       @id @default(autoincrement())
+  nombreRol      String?   @db.VarChar(60)
+  estadoRol      String?   @db.VarChar(60)
+  descripcionRol String?   @db.VarChar(60)
+  usuario        usuario[]
+}
+
+model servicio {
+  idServicio          Int       @id @default(autoincrement())
+  descripcionServicio String?   @db.VarChar(60)
+  estadoServicio      String?   @db.VarChar(60)
+  asesoriaIdServicio  Int?
+  asesoria            asesoria? @relation(fields: [asesoriaIdServicio], references: [idAsesoria], onDelete: Restrict, onUpdate: Restrict, map: "servicio_ibfk_1")
+
+  @@index([asesoriaIdServicio], map: "asesoriaIdServicio")
+}
+
+model tiendaaccesorio {
+  idTiendaAccesorio                    Int       @id @default(autoincrement())
+  descripcionTiendaAccesorio           String?   @db.VarChar(60)
+  estadoTiendaAccesorio                String?   @db.VarChar(60)
+  A_o                                  DateTime? @map("Año") @db.Date
+  marca                                Int?
+  modelo                               String?   @db.VarChar(50)
+  accesorio                            String?   @db.VarChar(50)
+  seleccionVehiculo                    Int?
+  caracteristicasAcceosiroSeleccionado String?   @db.VarChar(50)
+}
+
+model tipoasesoria {
+  idTipoAsesoria          Int        @id @default(autoincrement())
+  nombreTipoAsesoria      String?    @db.VarChar(50)
+  descripcionTipoAsesoria String?    @db.VarChar(200)
+  asesoria                asesoria[]
+}
+
+model usuario {
+  idUsuario                 Int                         @id @default(autoincrement())
+  nombreUsuario             String?                     @db.VarChar(60)
+  contrase_aUsuario         String?                     @map("contraseñaUsuario") @db.VarChar(60)
+  telefonoUsuario           Int?
+  documentoUsuario          Int?
+  edadUsuario               Int?
+  correoUsuario             String?                     @db.VarChar(60)
+  rolIdUsuario              Int?
+  asesoria                  asesoria[]
+  blogexperiencia           blogexperiencia[]
+  galeriavehiculomodificado galeriavehiculomodificado[]
+  rol                       rol?                        @relation(fields: [rolIdUsuario], references: [idRol], onDelete: Restrict, onUpdate: Restrict, map: "usuario_ibfk_1")
+  usuarioasesoria           usuarioasesoria[]
+
+  @@index([rolIdUsuario], map: "rolIdUsuario")
+}
+
+model usuarioasesoria {
+  idUsuarioAsesoria Int       @id @default(autoincrement())
+  idUsuario         Int?
+  idAsesoria        Int?
+  asesoria          asesoria? @relation(fields: [idAsesoria], references: [idAsesoria], onDelete: Restrict, onUpdate: Restrict, map: "usuarioasesoria_ibfk_1")
+  usuario           usuario?  @relation(fields: [idUsuario], references: [idUsuario], onDelete: Restrict, onUpdate: Restrict, map: "usuarioasesoria_ibfk_2")
+
+  @@index([idAsesoria], map: "idAsesoria")
+  @@index([idUsuario], map: "idUsuario")
+}
+
+model vehiculo {
+  idVehiculo                 Int                         @id @default(autoincrement())
+  a_oVehiculo                Int?                        @map("añoVehiculo")
+  tipoVehiculo               String?                     @db.VarChar(50)
+  descripcionTecnicaVehiculo String?                     @db.VarChar(50)
+  velocidadMaxima            Int?
+  aceleracion                Int?
+  motor                      String?                     @db.VarChar(50)
+  tipoMotor                  String?                     @db.VarChar(50)
+  potencia                   Int?
+  tipoTransmision            String?                     @db.VarChar(50)
+  historia                   String?                     @db.VarChar(50)
+  altura                     Int?
+  longitud                   String?                     @db.VarChar(50)
+  batalla                    String?                     @db.VarChar(50)
+  ancho                      Int?
+  numeroCilindros            String?                     @db.VarChar(50)
+  cilindrada                 String?                     @db.VarChar(50)
+  velocidadMaximaMotor       Int?
+  carrera                    String?                     @db.VarChar(50)
+  parMaximoNm                String?                     @db.VarChar(50)
+  potenciaMaximaLitro        String?                     @db.VarChar(50)
+  calibre                    String?                     @db.VarChar(50)
+  modeloIdVehiculo           Int?
+  marcaIdVehiculo            Int?
+  accesorio                  accesorio[]
+  galeriavehiculomodificado  galeriavehiculomodificado[]
+  marca                      marca?                      @relation(fields: [marcaIdVehiculo], references: [idMarca], onDelete: Restrict, onUpdate: Restrict, map: "vehiculo_ibfk_1")
+  modelo                     modelo?                     @relation(fields: [modeloIdVehiculo], references: [idModelo], onDelete: Restrict, onUpdate: Restrict, map: "vehiculo_ibfk_2")
+  vehiculoaccesorio          vehiculoaccesorio[]
+
+  @@index([marcaIdVehiculo], map: "marcaIdVehiculo")
+  @@index([modeloIdVehiculo], map: "modeloIdVehiculo")
+}
+
+model vehiculoaccesorio {
+  idVehiculoAccesorio Int        @id @default(autoincrement())
+  idAccesorio         Int?
+  idVehiculo          Int?
+  accesorio           accesorio? @relation(fields: [idAccesorio], references: [idAccesorio], onDelete: Restrict, onUpdate: Restrict, map: "vehiculoaccesorio_ibfk_1")
+  vehiculo            vehiculo?  @relation(fields: [idVehiculo], references: [idVehiculo], onDelete: Restrict, onUpdate: Restrict, map: "vehiculoaccesorio_ibfk_2")
+
+  @@index([idAccesorio], map: "idAccesorio")
+  @@index([idVehiculo], map: "idVehiculo")
+}
